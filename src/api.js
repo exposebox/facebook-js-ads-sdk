@@ -74,19 +74,11 @@ export default class FacebookAdsApi {
       return Promise.resolve(response)
     })
     .catch((response) => {
-      if (response instanceof Error) {
-        if (this._debug) {
-          console.log(`${method} ${url} ${data ? JSON.stringify(data) : ''} ${response.message}`)
-        }
-
-        throw response;
-      } else {
-        if (this._debug) {
-          console.log(`${response.status} ${method} ${url} ${data ? JSON.stringify(data) : ''}`)
-        }
-
-        throw new FacebookRequestError(response, method, url, data)
+      if (this._debug) {
+        console.log(`${response.status} ${method} ${url} ${data ? JSON.stringify(data) : ''}`)
       }
+
+      throw new FacebookRequestError(response, method, url, data)
     })
   }
 

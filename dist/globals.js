@@ -283,7 +283,7 @@ var FacebookRequestError = function (_FacebookError) {
   function FacebookRequestError(response, method, url, data) {
     classCallCheck(this, FacebookRequestError);
 
-    var error = response.body.error;
+    var error = response.body.error || response.body;
     var message = error.error_user_msg ? error.error_user_title + ': ' + error.error_user_msg : error.message;
 
     var _this = possibleConstructorReturn(this, (FacebookRequestError.__proto__ || Object.getPrototypeOf(FacebookRequestError)).call(this, message));
@@ -383,19 +383,11 @@ var FacebookAdsApi = function () {
         if (_this._debug) console.log('200 ' + method + ' ' + url + ' ' + (data ? JSON.stringify(data) : ''));
         return Promise.resolve(response);
       }).catch(function (response) {
-        if (response instanceof Error) {
-          if (_this._debug) {
-            console.log(method + ' ' + url + ' ' + (data ? JSON.stringify(data) : '') + ' ' + response.message);
-          }
-
-          throw response;
-        } else {
-          if (_this._debug) {
-            console.log(response.status + ' ' + method + ' ' + url + ' ' + (data ? JSON.stringify(data) : ''));
-          }
-
-          throw new FacebookRequestError(response, method, url, data);
+        if (_this._debug) {
+          console.log(response.status + ' ' + method + ' ' + url + ' ' + (data ? JSON.stringify(data) : ''));
         }
+
+        throw new FacebookRequestError(response, method, url, data);
       });
     }
   }], [{
