@@ -175,13 +175,40 @@ var Http = function () {
      * @param   {String}  method
      * @param   {String}  url
      * @param   {Object}  [data]
+     * @param   {Object}  options
      * @return  {Promise}
      */
     value: function request(method, url, data) {
-      if (typeof window !== 'undefined' && window.XMLHttpRequest) {
-        return Http.xmlHttpRequest(method, url, data);
+      var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+
+      var requestOnce = function requestOnce(method, url, data) {
+        if (typeof window !== 'undefined' && window.XMLHttpRequest) {
+          return Http.xmlHttpRequest(method, url, data);
+        }
+        return Http.requestPromise(method, url, data);
+      };
+
+      if (options.retry != null) {
+        var requestOnceRetry = function requestOnceRetry(numberOfRetries) {
+          return requestOnce(method, url, data).catch(function (err) {
+            if (err.code !== 'ETIMEDOUT' || numberOfRetries === options.retry) {
+              throw err;
+            }
+
+            var exponentialBackoffDelay = Math.pow(2, numberOfRetries) * 500 + Math.floor(Math.random() * 500);
+
+            return new Promise(function (resolve, reject) {
+              setTimeout(resolve, exponentialBackoffDelay);
+            }).then(function () {
+              return requestOnceRetry(numberOfRetries + 1);
+            });
+          });
+        };
+
+        return requestOnceRetry(0);
+      } else {
+        return requestOnce(method, url, data);
       }
-      return Http.requestPromise(method, url, data);
     }
 
     /**
@@ -381,7 +408,7 @@ var FacebookAdsApi = function () {
         url = path;
       }
 
-      return Http.request(method, url, data).then(function (response) {
+      return Http.request(method, url, data, { retry: 4 }).then(function (response) {
         if (_this._debug) console.log('200 ' + method + ' ' + url + ' ' + (data ? JSON.stringify(data) : ''));
         return Promise.resolve(response);
       }).catch(function (response) {
