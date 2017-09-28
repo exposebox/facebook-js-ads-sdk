@@ -68,7 +68,7 @@ export default class FacebookAdsApi {
       url = path
     }
 
-    return Http.request(method, url, data)
+    return Http.request(method, url, data, {retry: 4})
     .then((response) => {
       if (this._debug) console.log(`200 ${method} ${url} ${data ? JSON.stringify(data) : ''}`)
       return Promise.resolve(response)
