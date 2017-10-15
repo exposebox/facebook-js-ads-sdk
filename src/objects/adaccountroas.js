@@ -36,7 +36,7 @@ export default class AdAccountRoas extends AbstractObject {
     })
   }
 
-  static get Fields () {
+  static get Field () {
     return Object.freeze({
       adgroup_id: 'adgroup_id',
       arpu_180d: 'arpu_180d',

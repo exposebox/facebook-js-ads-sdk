@@ -81,7 +81,7 @@ export default class CustomAudience extends AbstractCrudObject {
     })
   }
 
-  static get Fields () {
+  static get Field () {
     return Object.freeze({
       account_id: 'account_id',
       approximate_count: 'approximate_count',

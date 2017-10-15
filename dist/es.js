@@ -1757,41 +1757,6 @@ var AdAccountRoas = function (_AbstractObject) {
         yield_90d: 'yield_90d'
       });
     }
-  }, {
-    key: 'Fields',
-    get: function get() {
-      return Object.freeze({
-        adgroup_id: 'adgroup_id',
-        arpu_180d: 'arpu_180d',
-        arpu_1d: 'arpu_1d',
-        arpu_30d: 'arpu_30d',
-        arpu_365d: 'arpu_365d',
-        arpu_3d: 'arpu_3d',
-        arpu_7d: 'arpu_7d',
-        arpu_90d: 'arpu_90d',
-        campaign_group_id: 'campaign_group_id',
-        campaign_id: 'campaign_id',
-        date_start: 'date_start',
-        date_stop: 'date_stop',
-        installs: 'installs',
-        revenue: 'revenue',
-        revenue_180d: 'revenue_180d',
-        revenue_1d: 'revenue_1d',
-        revenue_30d: 'revenue_30d',
-        revenue_365d: 'revenue_365d',
-        revenue_3d: 'revenue_3d',
-        revenue_7d: 'revenue_7d',
-        revenue_90d: 'revenue_90d',
-        spend: 'spend',
-        yield_180d: 'yield_180d',
-        yield_1d: 'yield_1d',
-        yield_30d: 'yield_30d',
-        yield_365d: 'yield_365d',
-        yield_3d: 'yield_3d',
-        yield_7d: 'yield_7d',
-        yield_90d: 'yield_90d'
-      });
-    }
   }]);
   return AdAccountRoas;
 }(AbstractObject);
@@ -3872,36 +3837,22 @@ var CustomAudience = function (_AbstractCrudObject) {
       return Object.freeze({
         account_id: 'account_id',
         approximate_count: 'approximate_count',
-        associated_audience_id: 'associated_audience_id',
-        claim_objective: 'claim_objective',
-        content_type: 'content_type',
-        creation_params: 'creation_params',
         data_source: 'data_source',
-        dataset_id: 'dataset_id',
         delivery_status: 'delivery_status',
         description: 'description',
-        event_source_group: 'event_source_group',
-        exclusions: 'exclusions',
         external_event_source: 'external_event_source',
         id: 'id',
-        inclusions: 'inclusions',
         is_value_based: 'is_value_based',
-        list_of_accounts: 'list_of_accounts',
         lookalike_audience_ids: 'lookalike_audience_ids',
         lookalike_spec: 'lookalike_spec',
         name: 'name',
         operation_status: 'operation_status',
         opt_out_link: 'opt_out_link',
-        origin_audience_id: 'origin_audience_id',
-        parent_audience_id: 'parent_audience_id',
         permission_for_actions: 'permission_for_actions',
         pixel_id: 'pixel_id',
-        prefill: 'prefill',
-        product_set_id: 'product_set_id',
         retention_days: 'retention_days',
         rule: 'rule',
         subtype: 'subtype',
-        tags: 'tags',
         time_content_updated: 'time_content_updated',
         time_created: 'time_created',
         time_updated: 'time_updated'
@@ -3943,33 +3894,6 @@ var CustomAudience = function (_AbstractCrudObject) {
         study_rule_audience: 'STUDY_RULE_AUDIENCE',
         video: 'VIDEO',
         website: 'WEBSITE'
-      });
-    }
-  }, {
-    key: 'Fields',
-    get: function get() {
-      return Object.freeze({
-        account_id: 'account_id',
-        approximate_count: 'approximate_count',
-        data_source: 'data_source',
-        delivery_status: 'delivery_status',
-        description: 'description',
-        external_event_source: 'external_event_source',
-        id: 'id',
-        is_value_based: 'is_value_based',
-        lookalike_audience_ids: 'lookalike_audience_ids',
-        lookalike_spec: 'lookalike_spec',
-        name: 'name',
-        operation_status: 'operation_status',
-        opt_out_link: 'opt_out_link',
-        permission_for_actions: 'permission_for_actions',
-        pixel_id: 'pixel_id',
-        retention_days: 'retention_days',
-        rule: 'rule',
-        subtype: 'subtype',
-        time_content_updated: 'time_content_updated',
-        time_created: 'time_created',
-        time_updated: 'time_updated'
       });
     }
   }]);
